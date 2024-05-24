@@ -3,7 +3,6 @@ import yfinance as yf
 import altair as alt
 import streamlit as st
 
-st.title('米国株価可視化アプリ')
 
 st.sidebar.write("""
 # GAFA株価
@@ -14,7 +13,7 @@ st.sidebar.write("""
 ## 表示日数選択
 """)
 
-days = st.sidebar.slider('日数', 2, 200, 20)
+days = st.sidebar.slider('日数', 2, 500, 200)
 
 st.write(f"""
 ### 過去 **{days}日間** のGAFA株価
