@@ -4,7 +4,6 @@ import streamlit as st
 import altair as alt
 from datetime import datetime, timedelta
 
-# サイドバーの設定
 st.sidebar.write("""
 # GAFA株価
 以下のオプションから表示日数を指定できます。
