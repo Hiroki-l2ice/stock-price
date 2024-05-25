@@ -1,9 +1,9 @@
 import pandas as pd
 import yfinance as yf
-import altair as alt
 import streamlit as st
+import altair as alt
 
-
+# サイドバーの設定
 st.sidebar.write("""
 # GAFA株価
 以下のオプションから表示日数を指定できます。
@@ -25,7 +25,7 @@ def get_data(days, tickers):
     for company in tickers.keys():
         tkr = yf.Ticker(tickers[company])
         hist = tkr.history(period=f'{days}d')
-        hist.index = hist.index.strftime('%d %B %Y')
+        hist.index = pd.to_datetime(hist.index).strftime('%Y-%m-%d')
         hist = hist[['Close']]
         hist.columns = [company]
         hist = hist.T
@@ -62,7 +62,7 @@ try:
     else:
         data = df.loc[companies]
         st.write("### 株価 (USD)", data.sort_index())
-        data = data.T.reset_index()
+        data = data.T.reset_index().rename(columns={'index': 'Date'})
         data = pd.melt(data, id_vars=['Date']).rename(
             columns={'value': 'Stock Prices(USD)'}
         )
