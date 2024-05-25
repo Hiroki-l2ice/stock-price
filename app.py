@@ -76,7 +76,7 @@ try:
             )
         )
         st.altair_chart(chart, use_container_width=True)
-except:
+except Exception as e:
     st.error(
-        "おっと！なにかエラーが起きているようです。"
+        f"おっと！なにかエラーが起きているようです。エラーメッセージ: {str(e)}"
     )
